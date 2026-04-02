@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasileiros no Exterior Descobrem Nova Estratégia — Referência Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #0d2b1e;
+    --verde-medio: #153b28;
+    --ouro: #c9a84c;
+    --ouro-claro: #e8c96e;
+    --branco: #f8f5ee;
+    --cinza: #a8a49a;
+    --preto: #080f0b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--preto); color: var(--branco); }
+
+  /* TOP BAR */
+  .top-bar { background: var(--ouro); padding: 10px 0; text-align: center; }
+  .top-bar p { font-size: 13px; font-weight: 600; color: #0d1f14; letter-spacing: 0.5px; }
+
+  /* NEWSPAPER HEADER */
+  .newspaper-header { background: var(--preto); border-bottom: 3px double rgba(201,168,76,0.5); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .paper-name { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--branco); letter-spacing: -0.5px; }
+  .paper-meta { text-align: right; font-size: 12px; color: var(--cinza); line-height: 1.7; }
+  .paper-tag { display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4); color: var(--ouro-claro); font-size: 11px; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* BREAKING NEWS BAR */
+  .breaking { background: var(--verde); border-top: 2px solid var(--ouro); border-bottom: 2px solid var(--ouro); padding: 12px 60px; display: flex; align-items: center; gap: 16px; overflow: hidden; }
+  .breaking-label { background: var(--ouro); color: #0d1f14; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; white-space: nowrap; text-transform: uppercase; letter-spacing: 1px; }
+  .breaking-text { font-size: 14px; color: var(--branco); white-space: nowrap; }
+
+  /* ARTICLE AREA */
+  .article-wrap { max-width: 960px; margin: 0 auto; padding: 60px; }
+  .section-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--ouro); font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,0.3); }
+  .headline { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 62px); font-weight: 900; line-height: 1.05; margin-bottom: 20px; color: var(--branco); }
+  .headline em { font-style: italic; color: var(--ouro-claro); }
+  .deck { font-family: 'Source Serif 4', serif; font-size: 20px; font-weight: 400; color: rgba(248,245,238,0.75); line-height: 1.55; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .byline { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+  .byline-avatar { width: 42px; height: 42px; background: var(--verde-medio); border-radius: 50%; border: 2px solid var(--ouro); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 16px; color: var(--ouro); font-weight: 700; flex-shrink: 0; }
+  .byline-text span { display: block; font-size: 14px; color: rgba(248,245,238,0.6); }
+  .byline-text strong { font-size: 14px; font-weight: 600; color: var(--branco); }
+
+  /* ARTICLE PHOTO */
+  .article-photo { width: 100%; aspect-ratio: 16/7; background: var(--verde-medio); border-radius: 2px; margin-bottom: 40px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .article-photo-inner { background: linear-gradient(135deg, #0f3522 0%, #1e5035 50%, #153b28 100%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
+  .photo-numbers { display: flex; gap: 60px; align-items: center; }
+  .photo-number { text-align: center; }
+  .photo-num-val { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 900; color: var(--ouro-claro); line-height: 1; }
+  .photo-num-label { font-size: 13px; color: rgba(248,245,238,0.6); margin-top: 6px; }
+  .photo-divider { width: 1px; height: 60px; background: rgba(201,168,76,0.3); }
+  .article-caption { font-size: 12px; color: var(--cinza); font-style: italic; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+  /* BODY TEXT */
+  .article-body { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; align-items: start; }
+  .article-text p { font-family: 'Source Serif 4', serif; font-size: 17px; line-height: 1.8; color: rgba(248,245,238,0.82); margin-bottom: 22px; }
+  .article-text .drop-cap::first-letter { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; float: left; line-height: 0.75; padding-right: 12px; padding-top: 8px; color: var(--ouro-claro); }
+  .pull-quote { background: rgba(201,168,76,0.06); border-left: 3px solid var(--ouro); padding: 24px 28px; margin: 28px 0; }
+  .pull-quote p { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--branco); line-height: 1.4; font-weight: 700; margin: 0; }
+
+  /* SIDEBAR */
+  .article-sidebar { }
+  .sidebar-widget { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); padding: 28px; margin-bottom: 24px; }
+  .sidebar-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--ouro); font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .sidebar-stat { margin-bottom: 20px; }
+  .sidebar-stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--ouro-claro); line-height: 1; margin-bottom: 6px; }
+  .sidebar-stat-label { font-size: 13px; color: var(--cinza); line-height: 1.5; }
+  .cta-box { background: var(--verde-medio); border: 2px solid var(--ouro); padding: 32px 28px; text-align: center; }
+  .cta-box h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--branco); margin-bottom: 12px; }
+  .cta-box p { font-size: 14px; color: var(--cinza); line-height: 1.6; margin-bottom: 24px; }
+  .btn-cta { display: block; background: var(--ouro); color: #0d1f14; font-size: 15px; font-weight: 700; padding: 16px 20px; text-decoration: none; text-align: center; transition: background 0.2s; font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; width: 100%; }
+  .btn-cta:hover { background: var(--ouro-claro); }
+  .cta-note { font-size: 12px; color: var(--cinza); margin-top: 12px; }
+
+  /* RELATED */
+  .related { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 60px; padding-top: 40px; }
+  .related-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--cinza); margin-bottom: 28px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .related-item { cursor: pointer; }
+  .related-item-img { width: 100%; aspect-ratio: 3/2; background: var(--verde-medio); margin-bottom: 14px; border-radius: 2px; }
+  .related-item-cat { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ouro); font-weight: 600; margin-bottom: 8px; }
+  .related-item-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--branco); line-height: 1.3; }
+
+  /* FORM */
+  .form-full { background: var(--verde); padding: 80px 60px; }
+  .form-full-inner { max-width: 640px; margin: 0 auto; }
+  .form-full-inner h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--branco); margin-bottom: 16px; }
+  .form-full-inner p { font-family: 'Source Serif 4', serif; font-size: 18px; color: var(--cinza); line-height: 1.6; margin-bottom: 40px; }
+  .form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-size: 12px; color: var(--cinza); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+  .form-group input, .form-group select { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2); color: var(--branco); font-size: 16px; padding: 14px 18px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; border-radius: 0; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--ouro); }
+  .form-group select option { background: var(--verde); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .btn-submit { background: var(--ouro); color: #0d1f14; font-size: 17px; font-weight: 700; padding: 20px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; width: 100%; }
+  .btn-submit:hover { background: var(--ouro-claro); }
+
+  <!-- Meta Pixel -->
+  <script>
+   !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                                      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];
+    t=b.createElement(e);t.async=!0;
+  t.src=v;
+    s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)
+  }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '1761905857999115');
+  fbq('init', '837741104784878');
+  fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1761905857999115&ev=PageView&noscript=1"/>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=837741104784878&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"/>
+
+  footer { background: var(--preto); border-top: 1px solid rgba(201,168,76,0.1); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--cinza); }
+
+  @media (max-width: 768px) {
+    .newspaper-header { padding: 20px 24px; }
+    .paper-name { font-size: 24px; }
+    .breaking { padding: 12px 24px; }
+    .article-wrap { padding: 40px 24px; }
+    .article-body { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+    .form-full { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; }
+    .photo-numbers { gap: 30px; }
+    .photo-num-val { font-size: 36px; }
+  }
+</style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1761905857999115');
+    fbq('init', '837741104784878');
+    fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1761905857999115&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=837741104784878&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"/>
+</head>
+<body>
+
+<div class="top-bar">
+  <p>EXCLUSIVO PARA BRASILEIROS NO EXTERIOR — Estratégia que 2.000 expatriados já usam para construir patrimônio no Brasil</p>
+</div>
+
+<header class="newspaper-header">
+  <div>
+    <div class="paper-name">Capital Report</div>
+    <div style="font-size: 12px; color: var(--cinza); margin-top: 4px;">Por Referência Capital · Assessoria Imobiliária para Expatriados</div>
+  </div>
+  <div class="paper-meta">
+    <span class="paper-tag">Edição Especial</span><br>
+    <span style="margin-top: 6px; display: block;">Finanças & Investimento Internacional</span>
+  </div>
+</header>
+
+<div class="breaking">
+  <span class="breaking-label">Destaque</span>
+  <span class="breaking-text">Brasileiros no exterior liberaram mais de R$500 milhões em crédito imobiliário sem precisar comprovar renda no Brasil</span>
+</div>
+
+<div class="article-wrap">
+  <div class="section-tag">Finanças · Imóveis · Expatriados</div>
+  <h1 class="headline">O método que permite brasileiros<br>no exterior comprarem imóvel<br>em reais pagando em <em>dólares</em></h1>
+  <p class="deck">Uma estratégia combinando consórcio imobiliário e alavancagem cambial permitiu que mais de 2.000 brasileiros expatriados adquirissem imóveis no Brasil sem comprovação de renda local — e fazendo o aluguel pagar a maior parte das parcelas.</p>
+
+  <div class="byline">
+    <div class="byline-avatar">RC</div>
+    <div class="byline-text">
+      <strong>Referência Capital — Assessoria Imobiliária</strong>
+      <span>Especialistas em investimento imobiliário para brasileiros no exterior · São Paulo & Internacional</span>
+    </div>
+  </div>
+
+  <div class="article-photo">
+    <div class="article-photo-inner">
+      <div class="photo-numbers">
+        <div class="photo-number">
+          <div class="photo-num-val">R$500M+</div>
+          <div class="photo-num-label">Em créditos estruturados</div>
+        </div>
+        <div class="photo-divider"></div>
+        <div class="photo-number">
+          <div class="photo-num-val">+2.000</div>
+          <div class="photo-num-label">Clientes atendidos</div>
+        </div>
+        <div class="photo-divider"></div>
+        <div class="photo-number">
+          <div class="photo-num-val">5,8:1</div>
+          <div class="photo-num-label">Câmbio dólar/real</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="article-caption">Dados acumulados desde 2023. Referência Capital atende brasileiros em mais de 30 países.</p>
+
+  <div class="article-body">
+    <div class="article-text">
+      <p class="drop-cap">Enquanto a maioria dos brasileiros que vive no exterior adia indefinidamente o sonho de ter um imóvel no Brasil — esperando voltar, esperando ter capital, esperando condições melhores — um grupo crescente descobriu uma janela de oportunidade que combina três fatores simultaneamente: o câmbio favorável, a ausência de burocracia e o retorno imobiliário brasileiro.</p>
+
+      <p>A estratégia, chamada internamente de "alavancagem de patrimônio", consiste em usar o consórcio imobiliário como veículo de compra parcelada — sem juros, sem entrada e sem necessidade de declarar renda no Brasil — e então locar o imóvel adquirido para que os aluguéis cubram a maior parte da parcela mensal.</p>
+
+      <div class="pull-quote">
+        <p>"Com o câmbio a 5,8 para 1, uma parcela de R$2.300 equivale a menos de 400 dólares por mês. É como pagar uma small car e ganhar um apartamento."</p>
+      </div>
+
+      <p>O modelo funciona especialmente bem para imóveis destinados à locação por temporada, como apartamentos em capitais e regiões turísticas. Um imóvel de R$400.000 pode gerar entre R$4.000 e R$8.000 por mês com locação por plataformas digitais — valor que, após despesas, cobre a parcela mensal com folga.</p>
+
+      <p>A Referência Capital, assessoria imobiliária fundada em 2023, estruturou mais de R$500 milhões em cartas de consórcio para clientes em mais de 30 países. A empresa cuida de todo o processo: da escolha do grupo de consórcio à estratégia de contemplação, passando pela seleção do imóvel e pela gestão de locação.</p>
+
+      <p>"Não vendemos apenas um consórcio. Entregamos um plano patrimonial completo — da obtenção do crédito até o imóvel gerando renda todo mês", explica a equipe da assessoria. "Nosso cliente não precisa nem estar no Brasil para que tudo funcione."</p>
+    </div>
+
+    <div class="article-sidebar">
+      <div class="sidebar-widget">
+        <div class="sidebar-title">Em números</div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-num">+2.000</div>
+          <div class="sidebar-stat-label">Brasileiros expatriados atendidos desde 2023</div>
+        </div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-num">R$8k</div>
+          <div class="sidebar-stat-label">Renda mensal média com aluguel por temporada em imóvel de R$400k</div>
+        </div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-num">30+</div>
+          <div class="sidebar-stat-label">Países atendidos, incluindo EUA, UK, França, Portugal e Alemanha</div>
+        </div>
+      </div>
+
+      <div class="cta-box" id="form">
+        <h3>Descubra quanto você pode alavancar</h3>
+        <p>Consultoria gratuita e personalizada com um especialista em imóveis para expatriados.</p>
+        <button class="btn-cta" onclick="document.getElementById('leadForm').scrollIntoView({behavior:'smooth'})">Agendar consultoria gratuita →</button>
+        <p class="cta-note">Sem compromisso. Atendimento via WhatsApp ou videochamada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="related">
+    <div class="related-title">Leia também</div>
+    <div class="related-grid">
+      <div class="related-item">
+        <div class="related-item-img" style="background: linear-gradient(135deg, #0f3522, #1e5035); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:rgba(201,168,76,0.4);">USD → BRL</div>
+        <div class="related-item-cat">Câmbio</div>
+        <div class="related-item-title">Como o câmbio transforma R$500k num investimento acessível para quem mora no exterior</div>
+      </div>
+      <div class="related-item">
+        <div class="related-item-img" style="background: linear-gradient(135deg, #153b28, #0d2b1e); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:rgba(201,168,76,0.4);">Auto-quitação</div>
+        <div class="related-item-cat">Estratégia</div>
+        <div class="related-item-title">A estratégia de "imóvel que se paga sozinho" que mais brasileiros no exterior estão usando</div>
+      </div>
+      <div class="related-item">
+        <div class="related-item-img" style="background: linear-gradient(135deg, #0a1f15, #153b28); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:rgba(201,168,76,0.4);">Consórcio</div>
+        <div class="related-item-cat">Financiamento</div>
+        <div class="related-item-title">Por que o consórcio vence o financiamento tradicional para quem vive fora do Brasil</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-full">
+  <div class="form-full-inner">
+    <h2>Fale com um especialista</h2>
+    <p>Descubra em quanto tempo você poderia ter um imóvel no Brasil gerando renda passiva — sem precisar estar aqui.</p>
+    <form class="form" id="leadForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" name="nome" placeholder="Seu nome completo" required>
+        </div>
+
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <div class="phone-wrap">
+            <input id="telefone" type="tel" name="telefone" placeholder="WhatsApp" required>
+            <div id="telefone-status" style="font-size:12px; margin-top:6px; color:#a8a49a;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>País onde mora</label>
+          <select name="pais" required>
+            <option value="">Selecione seu país</option>
+            <option>Estados Unidos</option>
+            <option>Portugal</option>
+            <option>Reino Unido</option>
+            <option>França</option>
+            <option>Alemanha</option>
+            <option>Canadá</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Quanto pode investir por mês</label>
+          <select name="capacidadeInvestimento" required>
+            <option value="">Selecione</option>
+            <option>Até R$1.000</option>
+            <option>R$1.000 a R$2.000</option>
+            <option>R$2.000 a R$5.000</option>
+            <option>Acima de R$5.000</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn" disabled>Quero minha consultoria gratuita →</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2025 Referência Capital. CRECI-SP. Todos os direitos reservados.</span>
+  <span style="font-size:12px; color: var(--cinza);">Privacidade · Termos</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script>
+  const WEBHOOK_URL = "https://nitro-app.referenciacapital.tech/webhook/leadsLP";
+  const VALIDAR_WHATSAPP_URL = "https://nitro-app.referenciacapital.tech/webhook/validarWhatsApp";
+  const API_KEY = "n8n.uA5GXxCvJrsexY$et9PyrScGy-nitro";
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    return match ? match[2] : "";
+  }
+
+  const telefoneInput = document.querySelector("#telefone");
+  const telefoneStatus = document.getElementById("telefone-status");
+  const submitBtn = document.getElementById("submitBtn");
+  const form = document.getElementById("leadForm");
+
+  const iti = window.intlTelInput(telefoneInput, {
+    initialCountry: "br",
+    preferredCountries: ["br", "us", "pt"],
+    separateDialCode: true,
+    nationalMode: true,
+    autoPlaceholder: "aggressive",
+    formatOnDisplay: true,
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
+  });
+
+  let telefoneValidoWhatsapp = false;
+  let telefoneValidationTimeout;
+
+  function setTelefoneStatus(message, color) {
+    telefoneStatus.textContent = message;
+    telefoneStatus.style.color = color;
+  }
+
+  function aplicarMascaraTelefone() {
+    const countryData = iti.getSelectedCountryData();
+    const iso2 = countryData.iso2;
+    let valor = telefoneInput.value.replace(/\D/g, "");
+
+    if (iso2 === "br") {
+      if (valor.length > 11) valor = valor.slice(0, 11);
+      if (valor.length > 10) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{4,5})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 2) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{0,5}).*/, "($1) $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (iso2 === "us") {
+      if (valor.length > 10) valor = valor.slice(0, 10);
+      if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{3})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 3) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{0,3}).*/, "($1) $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (iso2 === "pt") {
+      if (valor.length > 9) valor = valor.slice(0, 9);
+      if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, "$1 $2 $3");
+      } else if (valor.length > 3) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{0,3}).*/, "$1 $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (valor.length > 12) valor = valor.slice(0, 12);
+    telefoneInput.value = valor.replace(/(\d{3})(?=\d)/g, "$1 ").trim();
+  }
+
+  async function validarWhatsApp() {
+    const numeroLimpo = iti.getNumber().replace(/\D/g, "");
+
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+
+    if (!numeroLimpo || numeroLimpo.length < 10) {
+      setTelefoneStatus("Digite um número válido com DDI.", "#ff8a8a");
+      return;
+    }
+
+    if (!iti.isValidNumber()) {
+      setTelefoneStatus("Formato de número inválido.", "#ff8a8a");
+      return;
+    }
+
+    setTelefoneStatus("Validando WhatsApp...", "#c9a84c");
+
+    try {
+      const response = await fetch(`${VALIDAR_WHATSAPP_URL}?telefone=${encodeURIComponent(numeroLimpo)}`, {
+        method: "GET",
+        headers: {
+          "api-key": API_KEY
+        }
+      });
+
+      const data = await response.json();
+      const resultado = Array.isArray(data) ? data[0] : data;
+
+      const whatsappExiste =
+              resultado &&
+              (
+                      resultado.existe === true ||
+                      resultado.existe === "true" ||
+                      resultado.exists === true ||
+                      resultado.exists === "true"
+              );
+
+      if (whatsappExiste) {
+        telefoneValidoWhatsapp = true;
+        submitBtn.disabled = false;
+        setTelefoneStatus("WhatsApp válido.", "#7ed957");
+      } else {
+        telefoneValidoWhatsapp = false;
+        submitBtn.disabled = true;
+        setTelefoneStatus("Número de WhatsApp inválido.", "#ff8a8a");
+      }
+    } catch (error) {
+      console.error("Erro ao validar WhatsApp:", error);
+      telefoneValidoWhatsapp = false;
+      submitBtn.disabled = true;
+      setTelefoneStatus("Não foi possível validar o número.", "#ff8a8a");
+    }
+  }
+
+  telefoneInput.addEventListener("input", function () {
+    aplicarMascaraTelefone();
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+    setTelefoneStatus("Digitando...", "#a8a49a");
+
+    clearTimeout(telefoneValidationTimeout);
+    telefoneValidationTimeout = setTimeout(() => {
+      validarWhatsApp();
+    }, 800);
+  });
+
+  telefoneInput.addEventListener("blur", function () {
+    clearTimeout(telefoneValidationTimeout);
+    validarWhatsApp();
+  });
+
+  telefoneInput.addEventListener("countrychange", function () {
+    telefoneInput.value = "";
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+    setTelefoneStatus("", "#a8a49a");
+  });
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    if (!telefoneValidoWhatsapp) {
+      setTelefoneStatus("Número de WhatsApp inválido.", "#ff8a8a");
+      return;
+    }
+
+    const formData = new FormData(this);
+
+    const payload = {
+      nome: formData.get("nome"),
+      telefone: iti.getNumber().replace(/\D/g, ""),
+      email: formData.get("email"),
+      pais: formData.get("pais"),
+      capacidadeInvestimento: formData.get("capacidadeInvestimento"),
+      utmSource: window.location.href,
+      produto: "Consórcio Brasileiro",
+      _fbc: getCookie("_fbc"),
+      _fbp: getCookie("_fbp"),
+      trafficSource: "Paid",
+      first_traffic_source: "Paid"
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": API_KEY
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        fbq("track", "Lead", {
+          value: 1,
+          currency: "BRL"
+        });
+
+        setTimeout(() => {
+          window.location.href = "https://referenciacapital.com.br/investimento-estrangeiros-obrigado/";
+        }, 500);
+      } else {
+        alert("Erro ao enviar.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro de conexão.");
+    }
+  });
+</script>
+</body>
+</html>
