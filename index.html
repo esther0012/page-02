@@ -98,6 +98,18 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .btn-submit { background: var(--ouro); color: #0d1f14; font-size: 17px; font-weight: 700; padding: 20px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; width: 100%; }
   .btn-submit:hover { background: var(--ouro-claro); }
+  
+  .phone-wrap {
+    width: 100%;
+  }
+
+  .iti {
+    width: 100%;
+  }
+
+  .iti input {
+    width: 100% !important;
+  }
 
   <!-- Meta Pixel -->
   <script>
@@ -320,21 +332,6 @@
         <input type="email" name="email" placeholder="seu@email.com" required>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label>País onde mora</label>
-          <select name="pais" required>
-            <option value="">Selecione seu país</option>
-            <option>Estados Unidos</option>
-            <option>Portugal</option>
-            <option>Reino Unido</option>
-            <option>França</option>
-            <option>Alemanha</option>
-            <option>Canadá</option>
-            <option>Outro</option>
-          </select>
-        </div>
-
         <div class="form-group">
           <label>Quanto pode investir por mês</label>
           <select name="capacidadeInvestimento" required>
@@ -347,7 +344,9 @@
         </div>
       </div>
 
+    <div style="margin-top: 20px">
       <button type="submit" class="btn-submit" id="submitBtn" disabled>Quero minha consultoria gratuita →</button>
+    </div>
     </form>
   </div>
 </div>
